@@ -15,8 +15,7 @@ body {
   color: #fbf2c0;
   font-size: 20px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  place-content: center;
 }
 
 .logo {
@@ -35,6 +34,8 @@ body {
   padding: 30px;
   column-gap: 30px;
   row-gap: 30px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .items {
@@ -55,6 +56,7 @@ body {
   border-radius: 5px;
   box-shadow: 0 1px 3px rgb(0 0 0 / 0.2);
   padding: 15px;
+  width: 100%;
 }
 
 .title {
@@ -104,13 +106,7 @@ body {
   padding: 15px;
   position: relative;
   display: inline-block;
-}
-
-.input-text {
-  background-color: #eee1d5;
-  border-color: #885a2d;
-  padding: 8px;
-  border-radius: 50px;
+  width: 100%;
 }
 
 .input-label {
@@ -118,7 +114,20 @@ body {
   color: #885a2d;
   font-size: 14px;
   position: absolute;
-  left: 25px;
+  left: 40px;
   top: 5px;
   padding: 0 2px;
+}
+
+.input-text {
+  background-color: inherit;
+  border: 2px solid #885a2d;
+  padding: 8px;
+  border-radius: 50px;
+  text-indent: 18px;
+  width: 100%;
+}
+
+.short-input {
+  max-width: 200px;
 }
