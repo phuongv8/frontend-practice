@@ -86,7 +86,8 @@ body {
 .item-extra {
   grid-column: 2 / span 1;
   grid-row: 2 / span 1;
-  color: #885a2d;
+  color: #b08968;
+  /* color: #885a2d; */
 }
 
 .item-name,
@@ -97,4 +98,27 @@ body {
 /* Payment */
 .order-name {
   margin-bottom: 20px;
+}
+
+.input-group {
+  padding: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.input-text {
+  background-color: #eee1d5;
+  border-color: #885a2d;
+  padding: 8px;
+  border-radius: 50px;
+}
+
+.input-label {
+  background-color: #eee1d5;
+  color: #885a2d;
+  font-size: 14px;
+  position: absolute;
+  left: 25px;
+  top: 5px;
+  padding: 0 2px;
 }
