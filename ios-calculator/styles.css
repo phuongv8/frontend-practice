@@ -9,15 +9,16 @@ body {
 
 .calculator {
   width: 400px;
-  background-color: gray;
   color: white;
   height: 100vh;
+  background-color: #000;
 }
 
 .screen {
   font-family: monospace;
   font-size: 40px;
   text-align: right;
+  padding: 15px;
 }
 
 .buttons-row {
@@ -40,4 +41,22 @@ body {
 .btn {
   padding: 1px;
   text-align: center;
+  background-color: lightgrey;
+  color: black;
+}
+
+.num-btn,
+.clear-btn,
+.delete-btn {
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+}
+
+.operation-btn {
+  background-color: darkorange;
+  color: white;
+}
+
+.btn:last-child {
+  border-bottom: 2px solid black;
 }
