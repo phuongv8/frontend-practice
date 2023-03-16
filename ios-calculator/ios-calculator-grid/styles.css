@@ -8,7 +8,7 @@ body {
 }
 
 .calculator {
-  width: 400px;
+  width: 500px;
   color: white;
   height: 100vh;
   background-color: #000;
@@ -25,7 +25,14 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr;
-  font-size: 45px;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* grid-template-rows: 1fr; */
+  height: 91%;
+  font-size: 50px;
 }
 
 .clear-btn {
@@ -39,10 +46,13 @@ body {
 }
 
 .btn {
-  padding: 1px;
+  /* padding: 1px; */
   text-align: center;
   background-color: lightgrey;
   color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .num-btn,
@@ -55,8 +65,5 @@ body {
 .operation-btn {
   background-color: darkorange;
   color: white;
-}
-
-.btn:last-child {
   border-bottom: 2px solid black;
 }
