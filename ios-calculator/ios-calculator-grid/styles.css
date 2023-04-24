@@ -8,17 +8,16 @@ body {
 }
 
 .calculator {
-  width: 500px;
+  width: 400px;
   color: white;
-  height: 100vh;
-  background-color: #000;
+  background-color: black;
 }
 
 .screen {
-  font-family: monospace;
+  font-family: 'Courier New', Courier, monospace;
   font-size: 40px;
   text-align: right;
-  padding: 15px;
+  padding: 20px 15px;
 }
 
 .buttons-row {
@@ -30,9 +29,6 @@ body {
 .buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  /* grid-template-rows: 1fr; */
-  height: 91%;
-  font-size: 50px;
 }
 
 .clear-btn {
@@ -41,18 +37,23 @@ body {
   text-align: center;
 }
 
-.zero-btn {
-  grid-column: 1 / span 3;
-}
-
 .btn {
-  /* padding: 1px; */
-  text-align: center;
-  background-color: lightgrey;
-  color: black;
   display: flex;
+  background-color: #d8d9db;
+  color: black;
+  height: 100px;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  font-size: 40px;
+}
+
+.btn:hover {
+  background-color: #ebebeb;
+}
+
+.btn:active {
+  background-color: #bbbcbe;
 }
 
 .num-btn,
@@ -63,7 +64,24 @@ body {
 }
 
 .operation-btn {
-  background-color: darkorange;
+  background-color: #df974c;
   color: white;
   border-bottom: 2px solid black;
+}
+
+.operation-btn:hover {
+  background-color: #dfb07e;
+}
+
+.operation-btn:active {
+  background-color: #dd8d37;
+}
+
+.operation-btn:last-child {
+  border-bottom: none;
+}
+
+.zero-btn {
+  grid-column: 1 / span 3;
+  border-bottom: none;
 }
