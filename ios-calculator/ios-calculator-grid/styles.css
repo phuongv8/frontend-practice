@@ -60,14 +60,14 @@ body {
 .num-btn,
 .clear-btn,
 .delete-btn {
-  border-bottom: 2px solid black;
-  border-right: 2px solid black;
+  border-bottom: 3px solid black;
+  border-right: 3px solid black;
 }
 
 .operation-btn {
   background-color: #df974c;
   color: white;
-  border-bottom: 2px solid black;
+  border-bottom: 3px solid black;
 }
 
 .operation-btn:hover {
