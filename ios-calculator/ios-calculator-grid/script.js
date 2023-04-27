@@ -20,7 +20,11 @@ function handleNumber(number) {
   }
 }
 
-function handleSymbol(symbol) {}
+function handleSymbol(symbol) {
+  if (symbol === 'C') {
+    buffer = '0';
+  }
+}
 
 function updateScreen() {
   screen.innerText = buffer;
