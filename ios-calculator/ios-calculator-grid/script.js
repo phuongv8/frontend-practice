@@ -21,8 +21,32 @@ function handleNumber(number) {
 }
 
 function handleSymbol(symbol) {
-  if (symbol === 'C') {
-    buffer = '0';
+  switch (symbol) {
+    case 'C':
+      buffer = '0';
+      break;
+    case '←':
+      if (buffer.length === 1) {
+        buffer = '0';
+      } else {
+        buffer = buffer.substring(0, buffer.length - 1);
+      }
+      break;
+    case '÷':
+      console.log('÷');
+      break;
+    case '×':
+      console.log('x');
+      break;
+    case '−':
+      console.log('-');
+      break;
+    case '+':
+      console.log('+');
+      break;
+    case '=':
+      console.log('=');
+      break;
   }
 }
 
