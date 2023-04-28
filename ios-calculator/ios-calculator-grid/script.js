@@ -1,6 +1,14 @@
 const screen = document.querySelector('.screen');
 
 let buffer = '0';
+let calculateTotal = 0;
+let prevOperator;
+const mathOperations = {
+  '+': (a, b) => a + b,
+  '−': (a, b) => a - b,
+  '×': (a, b) => a * b,
+  '÷': (a, b) => a / b,
+};
 
 function buttonClick(value) {
   if (isNaN(parseInt(value))) {
@@ -8,7 +16,6 @@ function buttonClick(value) {
   } else {
     handleNumber(value);
   }
-
   updateScreen();
 }
 
@@ -33,21 +40,57 @@ function handleSymbol(symbol) {
       }
       break;
     case '÷':
-      console.log('÷');
-      break;
     case '×':
-      console.log('x');
-      break;
     case '−':
-      console.log('-');
-      break;
     case '+':
-      console.log('+');
+      console.log(symbol);
+      performOperation(symbol);
       break;
     case '=':
-      console.log('=');
+      if (prevOperator === null) {
+        return;
+      }
+
+      performOperation(parseInt(buffer));
+      prevOperator = null;
+      buffer = '' + calculateTotal;
+      calculateTotal = 0;
       break;
   }
+}
+
+function performOperation(symbol) {
+  if (buffer === '0') {
+    return;
+  }
+
+  const intBuffer = parseInt(buffer);
+  if (calculateTotal === 0) {
+    calculateTotal = intBuffer;
+  } else {
+    applyMath(intBuffer);
+  }
+
+  prevOperator = symbol;
+  buffer = '0';
+}
+
+function applyMath(intBuffer) {
+  if (prevOperator === '+') {
+    calculateTotal += intBuffer;
+  } else if (prevOperator === '−') {
+    calculateTotal -= intBuffer;
+  } else if (prevOperator === '×') {
+    calculateTotal *= intBuffer;
+  } else if (prevOperator === '÷') {
+    calculateTotal /= intBuffer;
+  }
+  // if (prevOperator in mathOperations) {
+  //   calculateTotal = mathOperations[prevOperator](
+  //     calculateTotal,
+  //     currentNumber
+  //   );
+  // }
 }
 
 function updateScreen() {
