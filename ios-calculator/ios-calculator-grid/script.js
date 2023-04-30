@@ -1,6 +1,6 @@
 const screen = document.querySelector('.screen');
 
-let buffer = '0';
+let inputNumber = '0';
 let calculateTotal = 0;
 let prevOperator;
 let justCalculated = false;
@@ -22,25 +22,25 @@ function buttonClick(value) {
 }
 
 function handleNumber(number) {
-  if (buffer === '0' || justCalculated) {
-    buffer = number;
+  if (inputNumber === '0' || justCalculated) {
+    inputNumber = number;
     justCalculated = false;
   } else {
-    buffer += number;
+    inputNumber += number;
   }
-  console.log(buffer);
+  console.log(inputNumber);
 }
 
 function handleSymbol(symbol) {
   switch (symbol) {
     case 'C':
-      buffer = '0';
+      inputNumber = '0';
       break;
     case '←':
-      if (buffer.length === 1) {
-        buffer = '0';
+      if (inputNumber.length === 1) {
+        inputNumber = '0';
       } else {
-        buffer = buffer.substring(0, buffer.length - 1);
+        inputNumber = inputNumber.substring(0, inputNumber.length - 1);
       }
       break;
     case '÷':
@@ -55,9 +55,9 @@ function handleSymbol(symbol) {
         return;
       }
 
-      performOperation(parseInt(buffer));
+      performOperation(parseInt(inputNumber));
       prevOperator = null;
-      buffer = '' + calculateTotal;
+      inputNumber = '' + calculateTotal;
       calculateTotal = 0;
 
       break;
@@ -65,29 +65,32 @@ function handleSymbol(symbol) {
 }
 
 function performOperation(symbol) {
-  const intBuffer = parseInt(buffer);
+  const parsedNumber = parseInt(inputNumber);
   if (calculateTotal === 0) {
-    calculateTotal = intBuffer;
+    calculateTotal = parsedNumber;
   } else {
-    applyMath(intBuffer);
+    applyMath(parsedNumber);
   }
 
   prevOperator = symbol;
-  buffer = '0';
+  inputNumber = '0';
 }
 
-function applyMath(intBuffer) {
+function applyMath(parsedNumber) {
   if (prevOperator in mathOperations) {
-    if (prevOperator === '÷' && intBuffer === 0) {
+    if (prevOperator === '÷' && parsedNumber === 0) {
       calculateTotal = Infinity;
     } else {
-      calculateTotal = mathOperations[prevOperator](calculateTotal, intBuffer);
+      calculateTotal = mathOperations[prevOperator](
+        calculateTotal,
+        parsedNumber
+      );
     }
   }
 }
 
 function updateScreen() {
-  screen.innerText = buffer;
+  screen.innerText = inputNumber;
 }
 
 function init() {
