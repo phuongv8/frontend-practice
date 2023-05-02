@@ -14,25 +14,19 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.screen {
+.calculator__screen {
   font-family: 'Courier New', Courier, monospace;
   font-size: 40px;
   text-align: right;
   padding: 20px 15px;
 }
 
-.buttons-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 1fr;
-}
-
-.buttons {
+.calculator__buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
 
-.clear-btn {
+.btn--clear {
   grid-column: 1 / span 2;
   grid-row: 1 / span 1;
   text-align: center;
@@ -59,32 +53,32 @@ body {
   background-color: #bbbcbe;
 }
 
-.num-btn,
-.clear-btn,
-.delete-btn {
+.btn--num,
+.btn--clear,
+.btn--delete {
   border-bottom: 3px solid black;
   border-right: 3px solid black;
 }
 
-.operation-btn {
+.btn--operation {
   background-color: #df974c;
   color: white;
   border-bottom: 3px solid black;
 }
 
-.operation-btn:hover {
+.btn--operation:hover {
   background-color: #dfb07e;
 }
 
-.operation-btn:active {
+.btn--operation:active {
   background-color: #dd8d37;
 }
 
-.operation-btn:last-child {
+.btn--operation:last-child {
   border-bottom: none;
 }
 
-.zero-btn {
+.btn--num-zero {
   grid-column: 1 / span 3;
   border-bottom: none;
 }
