@@ -28,7 +28,6 @@ function handleNumber(number) {
   } else {
     inputNumber += number;
   }
-  console.log(inputNumber);
 }
 
 function handleSymbol(symbol) {
