@@ -1,4 +1,4 @@
-const screen = document.querySelector('.screen');
+const screen = document.querySelector('.calculator__screen');
 
 let inputNumber = '0';
 let calculateTotal = 0;
@@ -95,7 +95,7 @@ function updateScreen() {
 
 function init() {
   document
-    .querySelector('.buttons')
+    .querySelector('.calculator__buttons')
     .addEventListener('click', function (event) {
       buttonClick(event.target.innerText);
     });
