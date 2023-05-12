@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Trebuchet MS', 'Trebuchet MS', 'Lucida Sans Unicode',
+    'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: #fff;
+  background-color: #121213;
+  margin: 0;
+  padding: 0;
+}
+
+.title-container {
+  text-align: center;
+  width: 100%;
+  border-bottom: 2px solid #3a3a3c;
+  padding-top: 5px;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tile-container {
+  width: 251px;
+  margin-bottom: 30px;
+}
+
+.keyboard-container {
+  width: 510px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.keyboard-container button {
+  width: 43px;
+  height: 58px;
+  border: none;
+  border-radius: 4px;
+  margin: 4px;
+  background-color: #818384;
+  font-weight: bold;
+}
