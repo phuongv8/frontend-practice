@@ -29,6 +29,15 @@ const keys = [
   '⌫',
 ];
 
+const tileRows = [
+  ['', '', '', '', ''],
+  ['', '', '', '', ''],
+  ['', '', '', '', ''],
+  ['', '', '', '', ''],
+  ['', '', '', '', ''],
+  ['', '', '', '', ''],
+];
+
 const createKeyboardButton = key => {
   const buttonElement = document.createElement('button');
   buttonElement.textContent = key;
@@ -50,4 +59,32 @@ const handleButtonClick = e => {
   console.log(e.target.textContent);
 };
 
+const createRowElement = rowIndex => {
+  const rowElement = document.createElement('div');
+  rowElement.id = `row-${rowIndex}`;
+  return rowElement;
+};
+
+const createTileElement = (rowIndex, tileIndex) => {
+  const tileElement = document.createElement('div');
+  tileElement.id = `row-${rowIndex}-tile-${tileIndex}`;
+  tileElement.classList.add('tile');
+  return tileElement;
+};
+
+const generateRowsAndTiles = tileRows => {
+  const tileContainer = document.querySelector('.tile-container');
+
+  tileRows.forEach((row, rowIndex) => {
+    const rowElement = createRowElement(rowIndex);
+    tileContainer.appendChild(rowElement);
+
+    row.forEach(tileIndex => {
+      const tileElement = createTileElement(rowIndex, tileIndex);
+      rowElement.appendChild(tileElement);
+    });
+  });
+};
+
 generateKeyboard(keys);
+generateRowsAndTiles(tileRows);
