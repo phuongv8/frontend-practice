@@ -1,6 +1,3 @@
-const tileElement = document.querySelector('.tile-container');
-const keyboardElement = document.querySelector('.keyboard-container');
-
 const keys = [
   'Q',
   'W',
@@ -32,9 +29,25 @@ const keys = [
   '⌫',
 ];
 
-keys.forEach(key => {
+const createKeyboardButton = key => {
   const buttonElement = document.createElement('button');
   buttonElement.textContent = key;
-  buttonElement.setAttribute('id', key);
-  keyboardElement.append(buttonElement);
-});
+  buttonElement.id = key;
+  buttonElement.addEventListener('click', handleButtonClick);
+  return buttonElement;
+};
+
+const generateKeyboard = keys => {
+  const keyboardElement = document.querySelector('.keyboard-container');
+
+  keys.forEach(key => {
+    const buttonElement = createKeyboardButton(key);
+    keyboardElement.appendChild(buttonElement);
+  });
+};
+
+const handleButtonClick = e => {
+  console.log(e.target.textContent);
+};
+
+generateKeyboard(keys);
