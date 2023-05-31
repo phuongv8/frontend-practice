@@ -11,13 +11,14 @@ body {
   padding: 0;
 }
 
+/* Title */
 .title-container {
   text-align: center;
   width: 100%;
   border-bottom: 2px solid #3a3a3c;
-  padding-top: 5px;
 }
 
+/* Game */
 .game-container {
   display: flex;
   flex-direction: column;
@@ -25,11 +26,26 @@ body {
   align-items: center;
 }
 
+/* Tile */
 .tile-container {
-  width: 251px;
-  margin-bottom: 30px;
+  width: 330px;
+  margin: 30px 0px;
 }
 
+.tile-container div {
+  display: flex;
+  justify-content: center;
+}
+
+.tile-container .tile {
+  display: flex;
+  height: 50px;
+  width: 50px;
+  border: 2px solid grey;
+  margin: 2px;
+}
+
+/* Keyboard */
 .keyboard-container {
   width: 510px;
   display: flex;
@@ -44,4 +60,13 @@ body {
   margin: 4px;
   background-color: #818384;
   font-weight: bold;
+}
+
+.keyboard-container button:nth-child(11) {
+  margin-left: 30px;
+}
+
+.keyboard-container button:nth-child(20),
+.keyboard-container button:nth-child(28) {
+  width: 68px;
 }
