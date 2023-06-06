@@ -29,14 +29,11 @@ const keys = [
   '⌫',
 ];
 
-const tileRows = [
-  ['', '', '', '', ''],
-  ['', '', '', '', ''],
-  ['', '', '', '', ''],
-  ['', '', '', '', ''],
-  ['', '', '', '', ''],
-  ['', '', '', '', ''],
-];
+const numRows = 6;
+const numTiles = 5;
+const word = 'RAMEN';
+let currRow = 0;
+let currTile = 0;
 
 const createKeyboardButton = key => {
   const buttonElement = document.createElement('button');
@@ -57,6 +54,15 @@ const generateKeyboard = keys => {
 
 const handleButtonClick = e => {
   console.log(e.target.textContent);
+  addLetter('P');
+};
+
+const addLetter = letter => {
+  const guessingTile = document.getElementById(
+    `row-${currRow}-tile-${currTile}`
+  );
+  console.log(guessingTile);
+  guessingTile.textContent = letter;
 };
 
 const createRowElement = rowIndex => {
@@ -72,19 +78,19 @@ const createTileElement = (rowIndex, tileIndex) => {
   return tileElement;
 };
 
-const generateRowsAndTiles = tileRows => {
+const generateRowsAndTiles = (numRows, numTiles) => {
   const tileContainer = document.querySelector('.tile-container');
 
-  tileRows.forEach((row, rowIndex) => {
+  for (let rowIndex = 0; rowIndex < numRows; rowIndex++) {
     const rowElement = createRowElement(rowIndex);
     tileContainer.appendChild(rowElement);
 
-    row.forEach(tileIndex => {
+    for (let tileIndex = 0; tileIndex < numTiles; tileIndex++) {
       const tileElement = createTileElement(rowIndex, tileIndex);
       rowElement.appendChild(tileElement);
-    });
-  });
+    }
+  }
 };
 
 generateKeyboard(keys);
-generateRowsAndTiles(tileRows);
+generateRowsAndTiles(numRows, numTiles);
