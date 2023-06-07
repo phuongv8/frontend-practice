@@ -60,9 +60,21 @@ const addLetter = letter => {
   guessingTile.dataset.letter = letter;
 };
 
+const checkCurrentRow = () => {
+  const wordInRow = Array.from(
+    { length: numTiles },
+    (_, tileIndex) =>
+      document.getElementById(`row-${currRow}-tile-${tileIndex}`).dataset
+        .letter || ''
+  ).join('');
+
+  return wordInRow === word;
+};
+
 const handleDelete = () => {
-  if (currTile === 0) return;
-  currTile--;
+  if (currTile > 0) {
+    currTile--;
+  }
   const guessingTile = document.getElementById(
     `row-${currRow}-tile-${currTile}`
   );
@@ -71,14 +83,22 @@ const handleDelete = () => {
 };
 
 const handleEnter = () => {
-  console.log('enter');
+  if (currTile === 5) {
+    if (checkCurrentRow()) {
+      console.log('Correct!');
+    } else {
+      console.log('Incorrect! Try again.');
+    }
+    moveToNextRow();
+  } else {
+    console.log('Please fill the entire row before checking.');
+  }
 };
 
 const moveToNextTile = () => {
   if (currTile < 5) {
     currTile++;
   } else {
-    console.log('move to next row');
     return;
   }
   // Stop and check row
@@ -99,6 +119,7 @@ const stopGame = () => {
 
 const handleButtonClick = e => {
   const letter = e.target.textContent;
+  console.log(currTile);
 
   if (letter === '⌫') {
     handleDelete();
@@ -107,6 +128,11 @@ const handleButtonClick = e => {
   } else {
     addLetter(letter);
     moveToNextTile();
+  }
+};
+
+const checkRow = () => {
+  if (currTile === 5) {
   }
 };
 
