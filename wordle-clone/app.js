@@ -53,101 +53,6 @@ const generateKeyboard = keys => {
   });
 };
 
-const addLetter = letter => {
-  const guessingTile = document.getElementById(
-    `row-${currRow}-tile-${currTile}`
-  );
-  guessingTile.textContent = letter;
-  guessingTile.dataset.letter = letter;
-};
-
-const checkCurrentRow = () => {
-  const wordInRow = Array.from(
-    { length: numTiles },
-    (_, tileIndex) =>
-      document.getElementById(`row-${currRow}-tile-${tileIndex}`).dataset
-        .letter || ''
-  ).join('');
-
-  return wordInRow === word;
-};
-
-const handleDelete = () => {
-  if (currTile > 0) {
-    currTile--;
-  }
-  const guessingTile = document.getElementById(
-    `row-${currRow}-tile-${currTile}`
-  );
-  guessingTile.textContent = '';
-  guessingTile.dataset.letter = '';
-};
-
-const handleEnter = () => {
-  if (currTile === 5) {
-    if (checkCurrentRow()) {
-      showMessage('Correct!');
-      isGameEnd = true;
-    } else {
-      if (currRow >= 5) {
-        showMessage('oh noooooo');
-        isGameEnd = true;
-        return;
-      } else {
-        moveToNextRow();
-      }
-    }
-  } else {
-    console.log('Please fill the entire row before checking.');
-  }
-};
-
-const showMessage = message => {
-  const messageDisplay = document.querySelector('.message-container');
-  const messageElement = document.createElement('p');
-  messageElement.textContent = message;
-  messageDisplay.appendChild(messageElement);
-  setTimeout(() => messageDisplay.removeChild(messageElement), 2000);
-};
-
-const moveToNextTile = () => {
-  if (currTile < 5) {
-    currTile++;
-  } else {
-    return;
-  }
-  // Stop and check row
-  // Move to next row after check
-};
-
-const moveToNextRow = () => {
-  currRow++;
-  currTile = 0;
-  if (currRow === 6) {
-    stopGame();
-  }
-};
-
-const stopGame = () => {
-  console.log('stop game');
-};
-
-const handleButtonClick = e => {
-  const letter = e.target.textContent;
-  console.log(currTile);
-
-  if (!isGameEnd) {
-    if (letter === '⌫') {
-      handleDelete();
-    } else if (letter === 'Enter') {
-      handleEnter();
-    } else {
-      addLetter(letter);
-      moveToNextTile();
-    }
-  }
-};
-
 const createRowElement = rowIndex => {
   const rowElement = document.createElement('div');
   rowElement.id = `row-${rowIndex}`;
@@ -181,6 +86,95 @@ const generateRowsAndTiles = (numRows, numTiles) => {
   for (let rowIndex = 0; rowIndex < numRows; rowIndex++) {
     generateRow(tileContainer, rowIndex, numTiles);
   }
+};
+
+const addLetterToTile = letter => {
+  const guessingTile = document.getElementById(
+    `row-${currRow}-tile-${currTile}`
+  );
+
+  if (guessingTile) {
+    guessingTile.textContent = letter;
+    guessingTile.dataset.letter = letter;
+  }
+};
+
+const checkCurrentRow = () => {
+  const wordInRow = Array.from(
+    { length: numTiles },
+    (_, tileIndex) =>
+      document.getElementById(`row-${currRow}-tile-${tileIndex}`).dataset
+        .letter || ''
+  ).join('');
+
+  return wordInRow === word;
+};
+
+const moveToNextTile = () => {
+  if (currTile < 5) {
+    currTile++;
+  } else {
+    return;
+  }
+};
+
+const moveToNextRow = () => {
+  currRow++;
+  currTile = 0;
+};
+
+const handleDelete = () => {
+  if (currTile > 0) {
+    currTile--;
+  }
+  const guessingTile = document.getElementById(
+    `row-${currRow}-tile-${currTile}`
+  );
+  guessingTile.textContent = '';
+  guessingTile.dataset.letter = '';
+};
+
+const handleEnter = () => {
+  if (currTile === 5) {
+    if (checkCurrentRow()) {
+      showMessage('Correct!');
+      isGameEnd = true;
+    } else {
+      if (currRow >= 5) {
+        showMessage('oh noooooo');
+        isGameEnd = true;
+        return;
+      } else {
+        moveToNextRow();
+      }
+    }
+  } else {
+    showMessage('Fill the entire row before checking or else');
+  }
+};
+
+const handleButtonClick = e => {
+  const letter = e.target.textContent;
+  console.log(currTile);
+
+  if (!isGameEnd) {
+    if (letter === '⌫') {
+      handleDelete();
+    } else if (letter === 'Enter') {
+      handleEnter();
+    } else {
+      addLetterToTile(letter);
+      moveToNextTile();
+    }
+  }
+};
+
+const showMessage = message => {
+  const messageDisplay = document.querySelector('.message-container');
+  const messageElement = document.createElement('p');
+  messageElement.textContent = message;
+  messageDisplay.appendChild(messageElement);
+  setTimeout(() => messageDisplay.removeChild(messageElement), 800);
 };
 
 generateKeyboard(keys);
