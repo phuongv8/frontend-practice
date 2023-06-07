@@ -52,17 +52,62 @@ const generateKeyboard = keys => {
   });
 };
 
-const handleButtonClick = e => {
-  console.log(e.target.textContent);
-  addLetter('P');
-};
-
 const addLetter = letter => {
   const guessingTile = document.getElementById(
     `row-${currRow}-tile-${currTile}`
   );
-  console.log(guessingTile);
   guessingTile.textContent = letter;
+  guessingTile.dataset.letter = letter;
+};
+
+const handleDelete = () => {
+  if (currTile === 0) return;
+  currTile--;
+  const guessingTile = document.getElementById(
+    `row-${currRow}-tile-${currTile}`
+  );
+  guessingTile.textContent = '';
+  guessingTile.dataset.letter = '';
+};
+
+const handleEnter = () => {
+  console.log('enter');
+};
+
+const moveToNextTile = () => {
+  if (currTile < 5) {
+    currTile++;
+  } else {
+    console.log('move to next row');
+    return;
+  }
+  // Stop and check row
+  // Move to next row after check
+};
+
+const moveToNextRow = () => {
+  currRow++;
+  currTile = 0;
+  if (currRow === 6) {
+    stopGame();
+  }
+};
+
+const stopGame = () => {
+  console.log('stop game');
+};
+
+const handleButtonClick = e => {
+  const letter = e.target.textContent;
+
+  if (letter === '⌫') {
+    handleDelete();
+  } else if (letter === 'Enter') {
+    handleEnter();
+  } else {
+    addLetter(letter);
+    moveToNextTile();
+  }
 };
 
 const createRowElement = rowIndex => {
