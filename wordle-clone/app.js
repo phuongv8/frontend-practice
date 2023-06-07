@@ -34,6 +34,7 @@ const numTiles = 5;
 const word = 'RAMEN';
 let currRow = 0;
 let currTile = 0;
+let isGameEnd = false;
 
 const createKeyboardButton = key => {
   const buttonElement = document.createElement('button');
@@ -86,10 +87,16 @@ const handleEnter = () => {
   if (currTile === 5) {
     if (checkCurrentRow()) {
       showMessage('Correct!');
+      isGameEnd = true;
     } else {
-      console.log('Incorrect! Try again.');
+      if (currRow >= 5) {
+        showMessage('oh noooooo');
+        isGameEnd = true;
+        return;
+      } else {
+        moveToNextRow();
+      }
     }
-    moveToNextRow();
   } else {
     console.log('Please fill the entire row before checking.');
   }
@@ -100,6 +107,7 @@ const showMessage = message => {
   const messageElement = document.createElement('p');
   messageElement.textContent = message;
   messageDisplay.appendChild(messageElement);
+  setTimeout(() => messageDisplay.removeChild(messageElement), 2000);
 };
 
 const moveToNextTile = () => {
@@ -128,18 +136,15 @@ const handleButtonClick = e => {
   const letter = e.target.textContent;
   console.log(currTile);
 
-  if (letter === '⌫') {
-    handleDelete();
-  } else if (letter === 'Enter') {
-    handleEnter();
-  } else {
-    addLetter(letter);
-    moveToNextTile();
-  }
-};
-
-const checkRow = () => {
-  if (currTile === 5) {
+  if (!isGameEnd) {
+    if (letter === '⌫') {
+      handleDelete();
+    } else if (letter === 'Enter') {
+      handleEnter();
+    } else {
+      addLetter(letter);
+      moveToNextTile();
+    }
   }
 };
 
