@@ -85,7 +85,7 @@ const handleDelete = () => {
 const handleEnter = () => {
   if (currTile === 5) {
     if (checkCurrentRow()) {
-      console.log('Correct!');
+      showMessage('Correct!');
     } else {
       console.log('Incorrect! Try again.');
     }
@@ -93,6 +93,13 @@ const handleEnter = () => {
   } else {
     console.log('Please fill the entire row before checking.');
   }
+};
+
+const showMessage = message => {
+  const messageDisplay = document.querySelector('.message-container');
+  const messageElement = document.createElement('p');
+  messageElement.textContent = message;
+  messageDisplay.appendChild(messageElement);
 };
 
 const moveToNextTile = () => {
