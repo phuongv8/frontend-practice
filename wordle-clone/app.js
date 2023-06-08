@@ -184,19 +184,27 @@ const updateTileColor = (tileElement, colorClass) => {
   tileElement.classList.add(colorClass);
 };
 
+const updateKeyboardColor = (keyboardElement, colorClass) => {
+  keyboardElement.classList.add(colorClass);
+};
+
 const applyColorToTiles = () => {
   for (let i = 0; i < numTiles; i++) {
     const guessingTile = document.getElementById(`row-${currRow}-tile-${i}`);
     const letter = guessingTile.dataset.letter;
+    const keyboard = document.getElementById(`${letter}`);
 
     setTimeout(() => {
       guessingTile.classList.add('flip');
       if (letter === word[i]) {
         updateTileColor(guessingTile, 'green-overlay');
+        updateKeyboardColor(keyboard, 'green-overlay');
       } else if (word.includes(letter)) {
         updateTileColor(guessingTile, 'yellow-overlay');
+        updateKeyboardColor(keyboard, 'yellow-overlay');
       } else {
         updateTileColor(guessingTile, 'grey-overlay');
+        updateKeyboardColor(keyboard, 'grey-overlay');
       }
     }, 500 * i);
   }
