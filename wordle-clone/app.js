@@ -31,7 +31,7 @@ const keys = [
 
 const numRows = 6;
 const numTiles = 5;
-const word = 'RAMEN';
+const word = 'MEETS';
 let currRow = 0;
 let currTile = 0;
 let isGameEnd = false;
@@ -111,7 +111,7 @@ const checkCurrentRow = () => {
 };
 
 const moveToNextTile = () => {
-  if (currTile < 5) {
+  if (currTile < numTiles) {
     currTile++;
   } else {
     return;
@@ -135,13 +135,14 @@ const handleDelete = () => {
 };
 
 const handleEnter = () => {
-  if (currTile === 5) {
+  if (currTile === numTiles) {
+    applyColorToTiles();
     if (checkCurrentRow()) {
       showMessage('You got a cheese >//<', false);
       isGameEnd = true;
     } else {
-      if (currRow >= 5) {
-        showMessage('oh noooooo', true);
+      if (currRow >= numRows - 1) {
+        showMessage('oh noooooo', false);
         isGameEnd = true;
         return;
       } else {
@@ -176,6 +177,25 @@ const showMessage = (message, hideMessage) => {
   messageDisplay.appendChild(messageElement);
   if (hideMessage) {
     setTimeout(() => messageDisplay.removeChild(messageElement), 800);
+  }
+};
+
+const updateTileColor = (tileElement, colorClass) => {
+  tileElement.classList.add(colorClass);
+};
+
+const applyColorToTiles = () => {
+  for (let i = 0; i < numTiles; i++) {
+    const guessingTile = document.getElementById(`row-${currRow}-tile-${i}`);
+    const letter = guessingTile.dataset.letter;
+
+    if (letter === word[i]) {
+      updateTileColor(guessingTile, 'green-overlay');
+    } else if (word.includes(letter)) {
+      updateTileColor(guessingTile, 'yellow-overlay');
+    } else {
+      updateTileColor(guessingTile, 'grey-overlay');
+    }
   }
 };
 
