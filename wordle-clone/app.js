@@ -137,11 +137,11 @@ const handleDelete = () => {
 const handleEnter = () => {
   if (currTile === 5) {
     if (checkCurrentRow()) {
-      showMessage('Correct!');
+      showMessage('You got a cheese >//<', false);
       isGameEnd = true;
     } else {
       if (currRow >= 5) {
-        showMessage('oh noooooo');
+        showMessage('oh noooooo', true);
         isGameEnd = true;
         return;
       } else {
@@ -149,7 +149,7 @@ const handleEnter = () => {
       }
     }
   } else {
-    showMessage('Fill the entire row before checking or else');
+    showMessage('Fill the entire row before checking or else', true);
   }
 };
 
@@ -169,12 +169,14 @@ const handleButtonClick = e => {
   }
 };
 
-const showMessage = message => {
+const showMessage = (message, hideMessage) => {
   const messageDisplay = document.querySelector('.message-container');
   const messageElement = document.createElement('p');
   messageElement.textContent = message;
   messageDisplay.appendChild(messageElement);
-  setTimeout(() => messageDisplay.removeChild(messageElement), 800);
+  if (hideMessage) {
+    setTimeout(() => messageDisplay.removeChild(messageElement), 800);
+  }
 };
 
 generateKeyboard(keys);
