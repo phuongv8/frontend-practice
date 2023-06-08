@@ -189,13 +189,16 @@ const applyColorToTiles = () => {
     const guessingTile = document.getElementById(`row-${currRow}-tile-${i}`);
     const letter = guessingTile.dataset.letter;
 
-    if (letter === word[i]) {
-      updateTileColor(guessingTile, 'green-overlay');
-    } else if (word.includes(letter)) {
-      updateTileColor(guessingTile, 'yellow-overlay');
-    } else {
-      updateTileColor(guessingTile, 'grey-overlay');
-    }
+    setTimeout(() => {
+      guessingTile.classList.add('flip');
+      if (letter === word[i]) {
+        updateTileColor(guessingTile, 'green-overlay');
+      } else if (word.includes(letter)) {
+        updateTileColor(guessingTile, 'yellow-overlay');
+      } else {
+        updateTileColor(guessingTile, 'grey-overlay');
+      }
+    }, 500 * i);
   }
 };
 
