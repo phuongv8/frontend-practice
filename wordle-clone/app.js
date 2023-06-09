@@ -180,32 +180,31 @@ const showMessage = (message, hideMessage) => {
   }
 };
 
-const updateTileColor = (tileElement, colorClass) => {
-  tileElement.classList.add(colorClass);
+const applyColor = (element, colorClass) => {
+  element.classList.add(colorClass);
 };
 
-const updateKeyboardColor = (keyboardElement, colorClass) => {
-  keyboardElement.classList.add(colorClass);
+const getColorClass = (letter, wordIndex) => {
+  if (letter === word[wordIndex]) {
+    return 'green-overlay';
+  } else if (word.includes(letter)) {
+    return 'yellow-overlay';
+  } else {
+    return 'grey-overlay';
+  }
 };
 
 const applyColorToTiles = () => {
   for (let i = 0; i < numTiles; i++) {
     const guessingTile = document.getElementById(`row-${currRow}-tile-${i}`);
     const letter = guessingTile.dataset.letter;
-    const keyboard = document.getElementById(`${letter}`);
+    const keyboardButton = document.getElementById(letter);
+    const colorClass = getColorClass(letter, i);
 
     setTimeout(() => {
       guessingTile.classList.add('flip');
-      if (letter === word[i]) {
-        updateTileColor(guessingTile, 'green-overlay');
-        updateKeyboardColor(keyboard, 'green-overlay');
-      } else if (word.includes(letter)) {
-        updateTileColor(guessingTile, 'yellow-overlay');
-        updateKeyboardColor(keyboard, 'yellow-overlay');
-      } else {
-        updateTileColor(guessingTile, 'grey-overlay');
-        updateKeyboardColor(keyboard, 'grey-overlay');
-      }
+      applyColor(guessingTile, colorClass);
+      applyColor(keyboardButton, colorClass);
     }, 500 * i);
   }
 };
