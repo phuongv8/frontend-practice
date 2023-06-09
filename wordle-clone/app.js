@@ -31,10 +31,22 @@ const keys = [
 
 const numRows = 6;
 const numTiles = 5;
-const word = 'MEETS';
+let word;
 let currRow = 0;
 let currTile = 0;
 let isGameEnd = false;
+
+const getWord = () => {
+  fetch('http://localhost:8000/word')
+    .then(response => response.json())
+    .then(json => {
+      console.log(json);
+      word = json.toUpperCase();
+    })
+    .catch(error => console.log(error));
+};
+
+getWord();
 
 const createKeyboardButton = key => {
   const buttonElement = document.createElement('button');
