@@ -3,6 +3,7 @@ const axios = require('axios');
 const express = require('express');
 require('dotenv').config();
 const cors = require('cors');
+const { response } = require('express');
 const app = express();
 
 app.use(cors());
@@ -26,6 +27,30 @@ app.get('/word', (req, res) => {
     .then(respond => {
       console.log(respond.data);
       res.json(respond.data[0]);
+    })
+    .catch(error => console.error(error));
+});
+
+app.get('/check', (req, res) => {
+  const word = req.query.word;
+
+  const options = {
+    method: 'GET',
+    url: 'https://api.datamuse.com/words',
+    params: {
+      sp: word,
+    },
+  };
+
+  axios
+    .request(options)
+    .then(response => {
+      const foundWord = response.data.find(item => item.word === word);
+      if (foundWord) {
+        res.json({ isValid: true });
+      } else {
+        res.json({ isValid: false });
+      }
     })
     .catch(error => console.error(error));
 });

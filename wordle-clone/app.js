@@ -122,6 +122,29 @@ const checkCurrentRow = () => {
   return wordInRow === word;
 };
 
+const validateWord = () => {
+  const wordInRow = Array.from(
+    { length: numTiles },
+    (_, tileIndex) =>
+      document.getElementById(`row-${currRow}-tile-${tileIndex}`).dataset
+        .letter || ''
+  ).join('');
+  console.log(`Checking word: ${wordInRow}`);
+  const checkingWord = wordInRow.toLowerCase();
+
+  return fetch(`http://localhost:8000/check?word=${checkingWord}`)
+    .then(response => response.json())
+    .then(json => {
+      console.log('json', json);
+      if (!json.isValid) {
+        showMessage('Invalid word', true);
+        return false;
+      }
+      return true;
+    });
+  // return wordInRow === word;
+};
+
 const moveToNextTile = () => {
   if (currTile < numTiles) {
     currTile++;
@@ -146,19 +169,27 @@ const handleDelete = () => {
   guessingTile.dataset.letter = '';
 };
 
-const handleEnter = () => {
+const handleEnter = async () => {
+  const isValid = await validateWord();
+  console.log(isValid);
   if (currTile === numTiles) {
-    applyColorToTiles();
-    if (checkCurrentRow()) {
-      showMessage('You got a cheese >//<', false);
-      isGameEnd = true;
-    } else {
-      if (currRow >= numRows - 1) {
-        showMessage('oh noooooo', false);
+    if (isValid) {
+      applyColorToTiles();
+
+      if (checkCurrentRow()) {
+        showMessage('You got a cheese >//<', false);
         isGameEnd = true;
-        return;
+        // applyColorToTiles();
       } else {
-        moveToNextRow();
+        if (currRow >= numRows - 1) {
+          // applyColorToTiles();
+          showMessage('oh noooooo', false);
+          isGameEnd = true;
+          return;
+        } else {
+          // applyColorToTiles();
+          moveToNextRow();
+        }
       }
     }
   } else {
