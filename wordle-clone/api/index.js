@@ -1,4 +1,3 @@
-const PORT = 8000;
 const axios = require('axios');
 const express = require('express');
 require('dotenv').config();
@@ -55,4 +54,4 @@ app.get('/check', (req, res) => {
     .catch(error => console.error(error));
 });
 
-app.listen(PORT, () => console.log('Server running on port ' + PORT));
+module.exports = app;
