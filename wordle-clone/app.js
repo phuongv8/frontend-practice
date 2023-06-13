@@ -40,7 +40,6 @@ const getWord = () => {
   fetch('http://localhost:8000/word')
     .then(response => response.json())
     .then(json => {
-      console.log(json);
       word = json.toUpperCase();
     })
     .catch(error => console.log(error));
@@ -136,7 +135,6 @@ const validateWord = () => {
       document.getElementById(`row-${currRow}-tile-${tileIndex}`).dataset
         .letter || ''
   ).join('');
-  console.log(`Checking word: ${wordInRow}`);
   const checkingWord = wordInRow.toLowerCase();
 
   if (isAllLettersSame(checkingWord)) {
@@ -147,7 +145,6 @@ const validateWord = () => {
   return fetch(`http://localhost:8000/check?word=${checkingWord}`)
     .then(response => response.json())
     .then(json => {
-      console.log('json', json);
       if (!json.isValid && checkingWord.length === 5) {
         showMessage('Invalid word', true);
         return false;
@@ -183,7 +180,6 @@ const handleDelete = () => {
 
 const handleEnter = async () => {
   const isValid = await validateWord();
-  console.log(isValid);
   if (currTile === numTiles) {
     if (isValid) {
       applyColorToTiles();
@@ -208,7 +204,6 @@ const handleEnter = async () => {
 
 const handleButtonClick = e => {
   const letter = e.target.textContent;
-  console.log(currTile);
 
   if (!isGameEnd) {
     if (letter === '⌫') {
