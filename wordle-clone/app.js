@@ -123,11 +123,10 @@ const checkCurrentRow = () => {
 };
 
 const isAllLettersSame = word => {
-  if (word.length === 0) {
-    return false;
+  if (word.length === 5) {
+    const firstLetter = word[0];
+    return word.split('').every(letter => letter === firstLetter);
   }
-  const firstLetter = word[0];
-  return word.split('').every(letter => letter === firstLetter);
 };
 
 const validateWord = () => {
@@ -149,7 +148,7 @@ const validateWord = () => {
     .then(response => response.json())
     .then(json => {
       console.log('json', json);
-      if (!json.isValid) {
+      if (!json.isValid && checkingWord.length === 5) {
         showMessage('Invalid word', true);
         return false;
       }
