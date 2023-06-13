@@ -122,6 +122,14 @@ const checkCurrentRow = () => {
   return wordInRow === word;
 };
 
+const isAllLettersSame = word => {
+  if (word.length === 0) {
+    return false;
+  }
+  const firstLetter = word[0];
+  return word.split('').every(letter => letter === firstLetter);
+};
+
 const validateWord = () => {
   const wordInRow = Array.from(
     { length: numTiles },
@@ -131,6 +139,11 @@ const validateWord = () => {
   ).join('');
   console.log(`Checking word: ${wordInRow}`);
   const checkingWord = wordInRow.toLowerCase();
+
+  if (isAllLettersSame(checkingWord)) {
+    showMessage('Invalid word', true);
+    return Promise.resolve(false);
+  }
 
   return fetch(`http://localhost:8000/check?word=${checkingWord}`)
     .then(response => response.json())
@@ -179,15 +192,12 @@ const handleEnter = async () => {
       if (checkCurrentRow()) {
         showMessage('You got a cheese >//<', false);
         isGameEnd = true;
-        // applyColorToTiles();
       } else {
         if (currRow >= numRows - 1) {
-          // applyColorToTiles();
           showMessage('oh noooooo', false);
           isGameEnd = true;
           return;
         } else {
-          // applyColorToTiles();
           moveToNextRow();
         }
       }
