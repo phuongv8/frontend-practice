@@ -36,8 +36,10 @@ let currRow = 0;
 let currTile = 0;
 let isGameEnd = false;
 
+const backendUrl = 'https://wordle-clone-eosin.vercel.app/';
+
 const getWord = () => {
-  fetch('http://localhost:8000/word')
+  fetch(`${backendUrl}/word`)
     .then(response => response.json())
     .then(json => {
       word = json.toUpperCase();
@@ -142,7 +144,7 @@ const validateWord = () => {
     return Promise.resolve(false);
   }
 
-  return fetch(`http://localhost:8000/check?word=${checkingWord}`)
+  return fetch(`${backendUrl}/check?word=${checkingWord}`)
     .then(response => response.json())
     .then(json => {
       if (!json.isValid && checkingWord.length === 5) {
