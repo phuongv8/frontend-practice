@@ -1,0 +1,18 @@
+body {
+    text-align: center;
+    font-family: 'Happy Monkey', cursive;
+    background: #363232;
+    color: #f0c3e2;
+}
+
+#bff-img {
+    width: 250px;
+}
+
+.gift-img {
+    width: 300px;
+}
+
+.gift-section {
+    margin-top: 50px;
+}
