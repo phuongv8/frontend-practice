@@ -1,18 +1,64 @@
 body {
     text-align: center;
     font-family: 'Happy Monkey', cursive;
-    background: #363232;
+    /* background: #363232; */
     color: #f0c3e2;
+    /* background: #F0C3E2; */
+    background: linear-gradient(#363232, #784A69);
 }
 
 #bff-img {
     width: 250px;
 }
 
-.gift-img {
-    width: 300px;
-}
-
 .gift-section {
     margin-top: 50px;
+}
+
+.gift-title {
+    margin-bottom: 10px;
+}
+
+.gift-img {
+    margin: 0 auto;
+    width: 400px;
+    height: 400px;
+    border: 6px solid white;
+    border-radius: 10px;
+    background-image: url("images/gift.jpg");
+    background-size: cover;
+}
+
+#gift-img-happy:hover {
+    width: 400px;
+    height: 400px;
+    background-image: url("images/happy2.gif");
+    background-size: cover;
+    background-position: center;
+}
+
+#gift-img-hot:hover {
+    background-image: url("images/hot.gif");
+}
+
+#gift-img-genius:hover {
+    background-image: url("images/badtz.gif");
+    background-size: 115%;
+    background-position: center;
+}
+
+#gift-img-badass:hover {
+    background-image: url("images/Kuromi_witch.png");
+    background-size: cover;
+    background-position: center;
+}
+
+#gift-img-cheers:hover {
+    background-image: url("images/Kuromi_and_Melody_BFF_picture.png");
+    background-size: cover;
+    background-position: center;
+}
+
+#gift-img-cheers {
+    height: 200px;
 }
