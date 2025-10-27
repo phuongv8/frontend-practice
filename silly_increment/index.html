@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Silly Cat Counter</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
 </head>
 <body>
+    <!-- TODO: Add cats bouncing across the page -->
     <h1>I got silly today:</h1>
     <h2 id="count-el">0</h2>
     <img src="silly.jpg" alt="silly cat" width="300">
     <button id="increment-btn" onclick="increment()">YIPPIE!</button>
-    <script src="index.js"></script>
+    <button id="save-btn" onclick="save()">SAVE</button>
+    <p id="save-el">Time in silly jail: </p>
 </body>
 </html>
