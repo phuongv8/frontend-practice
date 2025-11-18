@@ -23,11 +23,22 @@ h1 {
     font-size: 40px;
 }
 
-span {
+#highlight-text {
     color: #4ADF86;
     display: block;
 }
 
+#strike-through {
+    text-decoration: line-through;
+}
+
+#slider-value {
+    color: #e8e6e3;
+}
+
+#length-slider{
+    width: 32%;
+}
 .subtitle {
     color: #e8e6e3;
     margin-bottom: 20px;
@@ -73,5 +84,6 @@ hr {
     border: 0;
     height: 1px;
     background-color: #2F3E53;
+    margin-top: 20px;
 }
 
