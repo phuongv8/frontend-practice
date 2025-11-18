@@ -11,11 +11,17 @@
     <div class="container">
         <h1>Generate a <span id="highlight-text">random password</span></h1>
     <p class="subtitle">Never use an <span id="strike-through">in</span>secure password again.</p>
-    <div class="slidecontainer">
-        <input type="range" min="6" max="20" value="12" class="slider" id="length-slider" oninput="updateLengthValue(this.value)">
+    <div class="slide-container">
         <p id="slider-value"></p>
+        <input type="range" min="6" max="20" value="12" class="slider" id="length-slider" oninput="updateLengthValue(this.value)">
     </div>
-    <button id="generate-btn" onclick="printInput()">Generate Passwords</button>
+    <div class="checkbox-container">
+        <p>Characters Used</p>
+        <label><input type="checkbox" id="include-uppercase" checked>Uppercase</label>
+        <label><input type="checkbox" id="include-numbers" checked>Numbers</label>
+        <label><input type="checkbox" id="include-symbols" checked>Symbols</label>
+    </div>
+    <button id="generate-btn" onclick="renderPasswords()">Generate Passwords</button>
     <hr>
     <div class="passwords-container">
         <div class="left-column">
