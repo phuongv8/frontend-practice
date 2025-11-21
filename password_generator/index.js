@@ -47,3 +47,8 @@ function renderPasswords() {
     }
 }
 
+function copyToClipboard(boxId) {
+    let passwordText = document.getElementById(boxId);
+    navigator.clipboard.writeText(passwordText.textContent);
+    
+}

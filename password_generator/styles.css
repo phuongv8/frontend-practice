@@ -78,7 +78,7 @@ h1 {
     margin-right: auto;
 } 
 
-button {
+#generate-btn {
     padding: 10px 20px;
     font-size: 16px;
     background-color: #10B981;
@@ -99,4 +99,3 @@ hr {
     background-color: #2F3E53;
     margin-top: 20px;
 }
-
