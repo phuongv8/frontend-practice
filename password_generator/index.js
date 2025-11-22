@@ -30,6 +30,10 @@ function characterPool() {
 }
 
 function generatePassword() {
+    let copyElems = document.getElementsByClassName("copy-text");
+    for (let elem of copyElems) {
+        elem.textContent = "COPY";
+    }
     let length = parseInt(lengthInput.value);
     let pool = characterPool();
     let password = "";
@@ -49,6 +53,11 @@ function renderPasswords() {
 
 function copyToClipboard(boxId) {
     let passwordText = document.getElementById(boxId);
-    navigator.clipboard.writeText(passwordText.textContent);
+    if (!passwordText.textContent) return;
+    navigator.clipboard.writeText(passwordText.textContent).then(() => {
+        let copyElem = document.getElementById(boxId + "-copy");
+        copyElem.textContent = "COPIED!";
+
+    });
     
 }

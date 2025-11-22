@@ -26,14 +26,14 @@
     <div class="passwords-container">
         <div class="left-column">
             <p id="password1" class="password-box"></p>
-            <button class="copy-btn" onclick="copyToClipboard('password1')">
-                <span class="copy-icon">📋</span>
+            <button class="copy-btn" onclick="copyToClipboard('password1')" aria-label="Copy password">
+                <span class="copy-text" id="password1-copy">COPY</span>
             </button>
         </div>
         <div class="right-column">
             <p id="password2" class="password-box"> </p>
-            <button class="copy-btn" onclick="copyToClipboard('password2')">
-                <span class="copy-icon">📋</span>
+            <button class="copy-btn" onclick="copyToClipboard('password2')" aria-label="Copy password">
+                <span class="copy-text" id="password2-copy">COPY</span>
             </button>
         </div>
     </div>
