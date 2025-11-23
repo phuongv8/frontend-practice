@@ -50,6 +50,11 @@ h1 {
 .checkbox-container {
     margin-bottom: 20px;
     color: #e8e6e3;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 87%;
 }
 
 .subtitle {
